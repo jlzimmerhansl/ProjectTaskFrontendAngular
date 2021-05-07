@@ -17,6 +17,8 @@ export class StoriesFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('cliquei');
+    this.service.save(this.story).subscribe((response) => {
+      console.log(response);
+    });
   }
 }
