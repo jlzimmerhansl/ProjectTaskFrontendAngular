@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StoriesFormComponent } from './stories-form/stories-form.component';
 import { LayoutComponent } from '../layout/layout.component';
+import { StoriesListComponent } from './stories-list/stories-list.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'stories-form', component: StoriesFormComponent },
+      { path: 'stories-form/:id', component: StoriesFormComponent },
+      { path: 'stories-list', component: StoriesListComponent },
       { path: '', redirectTo: '/stories/lista', pathMatch: 'full' },
     ],
   },

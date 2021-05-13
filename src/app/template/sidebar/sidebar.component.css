@@ -1,5 +1,5 @@
 #sidenavAccordion {
-  background: var(--blue);
+  background: var(--blue-dark);
 }
 
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
@@ -7,7 +7,7 @@
 }
 
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: var(--gray-dark);
+  color: #abcdea;
 }
 
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
@@ -15,5 +15,5 @@
 }
 
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon:hover {
-  color: var(--gray-dark);
+  color: #abcdea;
 }

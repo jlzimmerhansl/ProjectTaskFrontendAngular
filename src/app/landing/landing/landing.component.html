@@ -4,6 +4,25 @@
       <div class="inside-box row justify-content-center">
         <img src="../../../assets/images/planning.svg" alt="Planning Helper" />
       </div>
+      <h1>PlanningHelper</h1>
+      <h6>Digite o nome da sua squad:</h6>
+      <form #teamForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="team.nomeTime"
+              name="nomeTime"
+            />
+          </div>
+          <div class="btnBox">
+            <button type="submit" class="btn">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </main>
 </div>

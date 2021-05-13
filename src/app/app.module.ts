@@ -14,7 +14,7 @@ import { LandingComponent } from './landing/landing/landing.component';
 import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LandingComponent, LayoutComponent],
+  declarations: [AppComponent, HomeComponent, LayoutComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

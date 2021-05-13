@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 :root {
-  --blue: #003767;
+  --blue-dark: #003767;
   --orange: #ec7000;
   --white: #fff;
   --gray: #6c757d;
@@ -10618,4 +10618,17 @@ body {
 }
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
+}
+
+/*Personalized styles */
+.btn-box .btn-itau {
+  background: var(--blue-dark);
+  border-radius: 0.5rem;
+  color: var(--white);
+}
+
+.btn-box .btn-itau:hover {
+  background: var(--orange);
+  border-radius: 0.5rem;
+  color: var(--white);
 }

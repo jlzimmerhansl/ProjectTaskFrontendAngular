@@ -12,4 +12,23 @@ export class StoriesService {
   save(story: Story): Observable<Story> {
     return this.http.post<Story>('http://localhost:8080/story', story);
   }
+
+  update(story: Story): Observable<any> {
+    return this.http.put<Story>(
+      `http://localhost:8080/story/${story.id}`,
+      story
+    );
+  }
+
+  getStories(): Observable<Story[]> {
+    return this.http.get<Story[]>('http://localhost:8080/story');
+  }
+
+  getStorieById(id: string): Observable<Story> {
+    return this.http.get<any>(`http://localhost:8080/story/${id}`);
+  }
+
+  deletar(story: Story): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/story/${story.id}`);
+  }
 }

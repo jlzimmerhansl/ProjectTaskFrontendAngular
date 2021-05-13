@@ -1,48 +1,56 @@
-<h1 class="mt-4">Stories</h1>
-<ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">Cadastro</li>
-</ol>
-<div class="container">
+<div class="title row">
+  <div class="icon">
+    <i class="far fa-bookmark"></i>
+  </div>
+  <h1 class="mt-4">
+    {{ story.id ? "Editar História" : "Cadastrar História" }}
+  </h1>
+</div>
+<div>
   <form #storyForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Número da História</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="story.storyNumber"
+            name="storyNumber"
+          />
+        </div>
+      </div>
+
       <div class="col-md-6">
         <div class="form-group">
-          <label>ID:</label>
-          <input type="text" class="form-control" />
+          <label>Título</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="story.title"
+            name="title"
+          />
         </div>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 btn-box">
+        <button type="submit" class="btn btn-itau" *ngIf="!story.id">
+          <i class="fas fa-paper-plane"></i> Salvar
+        </button>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Story Number</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="story.storyNumber"
-              name="storyNumber"
-            />
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Title</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="story.title"
-              name="title"
-            />
-          </div>
-        </div>
+        <button type="submit" class="btn btn-itau" *ngIf="story.id">
+          <i class="fas fa-sync-alt"></i> Atualizar
+        </button>
       </div>
-      <div class="row">
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-success">
-            <i class="fa fa-save">Salvar</i>
-          </button>
-        </div>
+      <div class="col-md-2 btn-box">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="voltarParaListagem()"
+        >
+          <i class="fas fa-arrow-alt-circle-left"></i> Voltar
+        </button>
       </div>
     </div>
   </form>
