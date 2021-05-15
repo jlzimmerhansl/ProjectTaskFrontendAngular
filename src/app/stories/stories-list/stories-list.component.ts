@@ -33,10 +33,11 @@ export class StoriesListComponent implements OnInit {
   deletarStory() {
     this.service.deletar(this.storySelected).subscribe(
       (response) => {
-        this.mensagemSucesso = 'Cliente deletado com sucesso!';
+        this.mensagemSucesso = 'História deletado com sucesso!';
+        setTimeout(() => (this.mensagemSucesso = null), 2000);
         this.ngOnInit();
       },
-      (erro) => (this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.')
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao deletar o história.')
     );
   }
 }

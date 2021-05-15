@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoriesFormComponent } from './stories-form/stories-form.component';
 import { LayoutComponent } from '../layout/layout.component';
 import { StoriesListComponent } from './stories-list/stories-list.component';
+import { StoriesDetailComponent } from './stories-detail/stories-detail.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: 'stories-form', component: StoriesFormComponent },
       { path: 'stories-form/:id', component: StoriesFormComponent },
       { path: 'stories-list', component: StoriesListComponent },
+      { path: 'stories-detail/:id', component: StoriesDetailComponent },
       { path: '', redirectTo: '/stories/lista', pathMatch: 'full' },
     ],
   },

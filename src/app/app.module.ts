@@ -9,9 +9,11 @@ import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
 import { StoriesModule } from './stories/stories.module';
 import { StoriesService } from './stories.service';
+import { TasksService } from './tasks.service';
 import { LandingModule } from './landing/landing.module';
 import { LandingComponent } from './landing/landing/landing.component';
 import { LayoutComponent } from './layout/layout.component';
+import { TaskModule } from './task/task.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LayoutComponent],
@@ -22,8 +24,9 @@ import { LayoutComponent } from './layout/layout.component';
     TemplateModule,
     StoriesModule,
     LandingModule,
+    TaskModule,
   ],
-  providers: [StoriesService],
+  providers: [StoriesService, TasksService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
