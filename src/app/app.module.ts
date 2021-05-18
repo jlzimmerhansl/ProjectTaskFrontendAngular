@@ -14,6 +14,8 @@ import { LandingModule } from './landing/landing.module';
 import { LandingComponent } from './landing/landing/landing.component';
 import { LayoutComponent } from './layout/layout.component';
 import { TaskModule } from './task/task.module';
+import { FilesModule } from './files/files.module';
+import { FilesFormComponent } from './files/files-form/files-form.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LayoutComponent],
@@ -25,6 +27,7 @@ import { TaskModule } from './task/task.module';
     StoriesModule,
     LandingModule,
     TaskModule,
+    FilesModule,
   ],
   providers: [StoriesService, TasksService],
   bootstrap: [AppComponent],

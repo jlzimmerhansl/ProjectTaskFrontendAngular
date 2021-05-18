@@ -24,17 +24,11 @@
   margin-right: 1rem;
 }
 
-.modal-header h4 {
-  font: 600 2rem Nunito, sans-serif;
-  color: var(--blue-dark);
-  text-align: center;
+img {
+  width: 100%;
 }
 
-form div input {
-  width: 4rem;
-}
-
-.btn-hours {
-  background: var(--blue-dark);
-  color: var(--white);
+p {
+  font: 400 1rem Nunito, sans-serif;
+  color: #777;
 }

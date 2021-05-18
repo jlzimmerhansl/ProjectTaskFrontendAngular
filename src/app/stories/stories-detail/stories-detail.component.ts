@@ -3,8 +3,10 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Story } from '../story';
 import { StoriesService } from '../../stories.service';
 import { Task } from '../../task/task';
+import { TaskWithId } from '../../task/taskwithid';
 import { TasksService } from '../../tasks.service';
 
+declare var $: any;
 @Component({
   selector: 'app-stories-detail',
   templateUrl: './stories-detail.component.html',
@@ -21,7 +23,7 @@ export class StoriesDetailComponent implements OnInit {
   priority: string;
   labels: string;
   storyJira: string;
-  tasks: Task[] = [];
+  tasks: TaskWithId[] = [];
   mensagemSucesso: string;
   mensagemErro: string;
   taskSelected: Task;
@@ -62,35 +64,40 @@ export class StoriesDetailComponent implements OnInit {
 
   onSubmit() {
     this.task = {
-      id: '',
-      issueType: '',
-      description: '',
-      summary: '',
-      hours: 0,
-      issueId: 0,
+      //id: '',
+      issueType: this.task.issueType,
+      description: this.task.description,
+      summary: this.task.summary,
+      hours: this.task.hours,
+      issueId: this.task.issueId,
       jiraKey: this.story.storyNumber,
-      epicLink: '',
-      complexityPoints: '',
-      priority: '',
-      components: '',
-      fixVersions: '',
-      labels: '',
-      dueDate: '',
+      epicLink: this.task.epicLink,
+      complexityPoints: this.task.complexityPoints,
+      priority: this.task.priority,
+      components: this.task.components,
+      fixVersions: this.task.fixVersions,
+      labels: this.task.labels,
+      dueDate: this.task.dueDate,
       team: '',
-      originalEstimate: 0,
+      originalEstimate: this.task.originalEstimate,
     };
 
     this.serviceTask.save(this.task).subscribe(
       (response) => {
         this.mensagemSucesso = 'Task cadastrada com sucesso!';
         setTimeout(() => (this.mensagemSucesso = null), 2000);
+        $('#modalCadastro').modal('hide');
         this.ngOnInit();
       },
-      (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrara task.')
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrar task.')
     );
   }
 
   preparaDelecao(task: Task) {
+    this.taskSelected = task;
+  }
+
+  preparaHours(task: TaskWithId) {
     this.taskSelected = task;
   }
 
@@ -104,5 +111,37 @@ export class StoriesDetailComponent implements OnInit {
       (erro) =>
         (this.mensagemErroTask = 'Ocorreu um erro ao deletar o história.')
     );
+  }
+
+  onSubmitHour() {
+    this.taskSelected = {
+      id: this.taskSelected.id,
+      issueType: this.taskSelected.issueType,
+      description: this.taskSelected.description,
+      summary: this.taskSelected.summary,
+      hours: this.taskSelected.hours,
+      issueId: this.taskSelected.issueId,
+      jiraKey: this.taskSelected.jiraKey,
+      epicLink: this.taskSelected.epicLink,
+      complexityPoints: this.taskSelected.complexityPoints,
+      priority: this.taskSelected.priority,
+      components: this.taskSelected.components,
+      fixVersions: this.taskSelected.fixVersions,
+      labels: this.taskSelected.labels,
+      dueDate: this.taskSelected.dueDate,
+      team: '',
+      originalEstimate: this.taskSelected.originalEstimate,
+    };
+
+    this.serviceTask.update(this.taskSelected).subscribe(
+      (response) => {
+        this.mensagemSucesso = 'Horas cadastrada com sucesso!';
+        setTimeout(() => (this.mensagemSucesso = null), 2000);
+        $('#modalHours').modal('hide');
+        this.ngOnInit();
+      },
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrar task.')
+    );
+    console.log(this.taskSelected);
   }
 }

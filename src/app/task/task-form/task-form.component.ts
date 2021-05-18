@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Task } from '../task';
+import { TaskWithId } from '../taskwithid';
 import { TasksService } from '../../tasks.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { TasksService } from '../../tasks.service';
 })
 export class TaskFormComponent implements OnInit {
   task: Task;
+  taskWithId: TaskWithId;
   id: string;
   issues: string[];
   label: string[];
@@ -24,16 +26,27 @@ export class TaskFormComponent implements OnInit {
     private router: Router
   ) {
     this.task = new Task();
+    this.taskWithId = new TaskWithId();
     this.issues = ['Sub-Task', 'Sub-Development', 'Sub-Test'];
     this.label = ['component_suthub', 'integracao_suthub'];
     this.primary = ['high', 'medium', 'low'];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let params: Params = this.activatedRoute.params;
+
+    if (params && params.value && params.value.id) {
+      this.id = params.value.id;
+      this.service.getTaskById(this.id).subscribe(
+        (response) => (this.taskWithId = response),
+        (errorResponse) => (this.taskWithId = new TaskWithId())
+      );
+    }
+  }
 
   onSubmit() {
     this.service.update(this.task).subscribe((response) => {
-      window.history.back();
+      this.router.navigate(['/tasks/tasks-list']);
     });
   }
 }

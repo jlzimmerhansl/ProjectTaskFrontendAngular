@@ -13,6 +13,20 @@ export class StoriesService {
     return this.http.post<Story>('http://localhost:8080/story', story);
   }
 
+  gerarPokerPlanning(): Observable<any> {
+    return this.http.post<any>(
+      'http://localhost:8080/task/exportPlanningPoker',
+      {}
+    );
+  }
+
+  gerarJiraImporter(): Observable<any> {
+    return this.http.post<any>(
+      'http://localhost:8080/task/exportJiraImporter',
+      {}
+    );
+  }
+
   update(story: Story): Observable<any> {
     return this.http.put<Story>(
       `http://localhost:8080/story/${story.id}`,
