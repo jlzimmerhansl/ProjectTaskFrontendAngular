@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { StoriesService } from '../../stories.service';
 
 @Component({
@@ -10,16 +11,16 @@ export class FilesFormComponent implements OnInit {
   mensagemSucesso: string;
   mensagemErro: string;
 
-  constructor(private service: StoriesService) {}
+  constructor(private service: StoriesService, private router: Router) {}
 
   ngOnInit(): void {}
 
   gerarPokerPlanning() {
     this.service.gerarPokerPlanning().subscribe(
       (response) => {
-        this.mensagemSucesso = `Arquivo gerado no caminho: ${response.data.path}`;
-        setTimeout(() => (this.mensagemSucesso = null), 2000);
-        this.ngOnInit();
+        this.router.navigate([
+          'http://localhost:8080/task?exportPlanningPoker=true',
+        ]);
       },
       (erro) => (this.mensagemErro = 'Ocorreu um erro ao gerar arquivo.')
     );
@@ -28,9 +29,9 @@ export class FilesFormComponent implements OnInit {
   gerarJiraImporter() {
     this.service.gerarJiraImporter().subscribe(
       (response) => {
-        this.mensagemSucesso = `Arquivo gerado no caminho: ${response.data.path}`;
-        setTimeout(() => (this.mensagemSucesso = null), 2000);
-        this.ngOnInit();
+        this.router.navigate([
+          'http://localhost:8080/task?exportJiraImporter=true',
+        ]);
       },
       (erro) => (this.mensagemErro = 'Ocorreu um erro ao gerar arquivo.')
     );

@@ -1,3 +1,4 @@
+import { Story } from '../stories/story';
 export class Task {
   id?: string;
   issueType: string;
@@ -5,7 +6,7 @@ export class Task {
   summary: string;
   hours: number;
   issueId: number;
-  jiraKey: string;
+  story: Story;
   epicLink: string;
   complexityPoints: string;
   priority: string;

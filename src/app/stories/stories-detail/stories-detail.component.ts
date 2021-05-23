@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Story } from '../story';
 import { StoriesService } from '../../stories.service';
@@ -29,15 +30,18 @@ export class StoriesDetailComponent implements OnInit {
   taskSelected: Task;
   mensagemSucessoTask: string;
   mensagemErroTask: string;
+  taskWithId: TaskWithId;
 
   constructor(
     private service: StoriesService,
     private serviceTask: TasksService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.story = new Story();
     this.task = new Task();
+    this.taskWithId = new TaskWithId();
     this.issues = ['Sub-Task', 'Sub-Development', 'Sub-Test'];
     this.label = ['component_suthub', 'integracao_suthub'];
     this.primary = ['high', 'medium', 'low'];
@@ -56,10 +60,9 @@ export class StoriesDetailComponent implements OnInit {
     }
 
     this.serviceTask
-      .getTasks()
+      .getTaskByHistory(this.story.storyNumber)
       .subscribe((response) => (this.tasks = response));
-
-    console.log(this.tasks);
+    console.log(this.story.storyNumber);
   }
 
   onSubmit() {
@@ -70,7 +73,7 @@ export class StoriesDetailComponent implements OnInit {
       summary: this.task.summary,
       hours: this.task.hours,
       issueId: this.task.issueId,
-      jiraKey: this.story.storyNumber,
+      story: this.story,
       epicLink: this.task.epicLink,
       complexityPoints: this.task.complexityPoints,
       priority: this.task.priority,
@@ -81,7 +84,8 @@ export class StoriesDetailComponent implements OnInit {
       team: '',
       originalEstimate: this.task.originalEstimate,
     };
-
+    console.log('task');
+    console.log(this.task);
     this.serviceTask.save(this.task).subscribe(
       (response) => {
         this.mensagemSucesso = 'Task cadastrada com sucesso!';
@@ -121,7 +125,7 @@ export class StoriesDetailComponent implements OnInit {
       summary: this.taskSelected.summary,
       hours: this.taskSelected.hours,
       issueId: this.taskSelected.issueId,
-      jiraKey: this.taskSelected.jiraKey,
+      story: this.taskSelected.story,
       epicLink: this.taskSelected.epicLink,
       complexityPoints: this.taskSelected.complexityPoints,
       priority: this.taskSelected.priority,

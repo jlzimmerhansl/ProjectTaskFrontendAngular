@@ -12,8 +12,8 @@ export class TasksService {
   constructor(private http: HttpClient) {}
 
   saveTeam(team: Team): Observable<any> {
-    return this.http.post<any>(
-      `http://localhost:8080/task/addTeam?nomeTime=${team.nomeTime}`,
+    return this.http.get<any>(
+      `http://localhost:8080/task?nomeTime=${team.nomeTime}`,
       {}
     );
   }
@@ -24,6 +24,12 @@ export class TasksService {
 
   getTasks(): Observable<TaskWithId[]> {
     return this.http.get<TaskWithId[]>('http://localhost:8080/task');
+  }
+
+  getTaskByHistory(storyNumber: string): Observable<TaskWithId[]> {
+    return this.http.get<TaskWithId[]>(
+      `http://localhost:8080/task?jiraKey=${storyNumber}`
+    );
   }
 
   deletar(task: Task): Observable<any> {

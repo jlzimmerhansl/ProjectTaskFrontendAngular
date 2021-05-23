@@ -34,7 +34,7 @@
           <tr *ngFor="let task of tasks">
             <td>{{ task.issueType }}</td>
             <td>{{ task.summary }}</td>
-            <td>{{ task.jiraKey }}</td>
+            <td>{{ task.story.storyNumber }}</td>
 
             <td class="text-center">
               <button

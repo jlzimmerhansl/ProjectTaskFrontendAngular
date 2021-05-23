@@ -57,12 +57,12 @@
           </tr>
         </thead>
         <tbody *ngFor="let task of tasks">
-          <tr *ngIf="task.jiraKey === story.storyNumber">
+          <tr>
             <td>{{ task.issueType }}</td>
             <td>
               {{ task.summary }}
             </td>
-            <td>{{ task.jiraKey }}</td>
+            <td>{{ task.story.storyNumber }}</td>
             <td class="text-center">
               <button
                 class="btn btn-hours ml-2"
@@ -166,8 +166,6 @@
                     class="form-control"
                     disabled="true"
                     [value]="story.storyNumber"
-                    [(ngModel)]="task.jiraKey"
-                    name="jiraKey"
                   />
                 </div>
               </div>

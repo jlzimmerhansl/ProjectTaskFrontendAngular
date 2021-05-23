@@ -39,6 +39,8 @@
       <button
         (click)="gerarPokerPlanning()"
         class="btn btn-file justify-content-center"
+        href="http://localhost:8080/task?exportPlanningPoker=true"
+        download="planningPoker.txt"
       >
         <img
           src="../../../assets/images/pokerPlanning.svg"
@@ -51,6 +53,8 @@
       <button
         (click)="gerarJiraImporter()"
         class="btn btn-file justify-content-center"
+        href="http://localhost:8080/task?exportJiraImporter=true"
+        download="jiraImporter.txt"
       >
         <img src="../../../assets/images/jira.svg" alt="Gerar Jira IMporter" />
         <h3>Gerar arquivo JiraImporter</h3>

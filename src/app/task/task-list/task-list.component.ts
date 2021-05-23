@@ -52,7 +52,7 @@ export class TaskListComponent implements OnInit {
       summary: this.taskSelected.summary,
       hours: this.taskSelected.hours,
       issueId: this.taskSelected.issueId,
-      jiraKey: this.taskSelected.jiraKey,
+      story: this.taskSelected.story,
       epicLink: this.taskSelected.epicLink,
       complexityPoints: this.taskSelected.complexityPoints,
       priority: this.taskSelected.priority,
