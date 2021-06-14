@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,9 +17,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { TaskModule } from './task/task.module';
 import { FilesModule } from './files/files.module';
 import { FilesFormComponent } from './files/files-form/files-form.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LayoutComponent],
+  declarations: [AppComponent, HomeComponent, LayoutComponent, LoginComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,6 +30,7 @@ import { FilesFormComponent } from './files/files-form/files-form.component';
     LandingModule,
     TaskModule,
     FilesModule,
+    FormsModule,
   ],
   providers: [StoriesService, TasksService],
   bootstrap: [AppComponent],
