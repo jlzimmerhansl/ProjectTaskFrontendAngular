@@ -26,6 +26,19 @@ export class AuthService {
     return null;
   }
 
+  signOut() {
+    localStorage.removeItem('token');
+  }
+
+  getAuthenticatedUser() {
+    const token = this.handleToken();
+    if (token) {
+      const user = this.jwtHelper.decodeToken(token).user_name;
+      return user;
+    }
+    return null;
+  }
+
   isAuthenticated(): boolean {
     const token = this.handleToken();
 

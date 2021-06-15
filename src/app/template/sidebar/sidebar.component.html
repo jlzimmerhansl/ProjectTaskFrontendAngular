@@ -23,5 +23,15 @@
         >
       </div>
     </div>
+    <div class="sb-sidenav-footer">
+      <div class="small">Usuário logado:</div>
+      {{ userAuthenticated }}
+      <a class="nav-link" (click)="logout()" href="#"
+        ><div class="sb-nav-link-icon">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+        SignOut</a
+      >
+    </div>
   </nav>
 </div>
