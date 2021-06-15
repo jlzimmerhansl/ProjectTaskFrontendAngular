@@ -20,7 +20,21 @@ export class LoginComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
   onSubmit() {
-    this.router.navigate(['/squad']);
+    const user: User = new User();
+
+    user.email = this.username;
+    user.password = this.password;
+    console.log(user);
+    this.authService.handleLogin(user).subscribe(
+      (response) => {
+        const access_token = JSON.stringify(response);
+        localStorage.setItem('token', access_token);
+        this.router.navigate(['/squad']);
+      },
+      (errorResponse) => {
+        this.errors = ['Usuário e/ou senha incorretos'];
+      }
+    );
   }
 
   preparaCadastrar(event) {
@@ -35,7 +49,7 @@ export class LoginComponent {
   create() {
     const user: User = new User();
 
-    user.username = this.username;
+    user.email = this.username;
     user.password = this.password;
     user.answer = this.answer;
     user.question = this.question;

@@ -3,47 +3,43 @@ import { HttpClient } from '@angular/common/http';
 import { Story } from './stories/story';
 import { TaskWithId } from './task/taskwithid';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoriesService {
+  apiURL: string = environment.apiURLBase + '/story';
+  jiraImporter: string = environment.apiURLBase + '/exportJiraImporter';
+  planningPoker: string = environment.apiURLBase + '/exportPlanningPoker';
+
   constructor(private http: HttpClient) {}
 
   save(story: Story): Observable<Story> {
-    return this.http.post<Story>('http://localhost:8080/story', story);
+    return this.http.post<Story>(this.apiURL, story);
   }
 
   gerarPokerPlanning(): Observable<any> {
-    return this.http.post<any>(
-      'http://localhost:8080/task/exportPlanningPoker',
-      {}
-    );
+    return this.http.post<any>(this.planningPoker, {});
   }
 
   gerarJiraImporter(): Observable<any> {
-    return this.http.post<any>(
-      'http://localhost:8080/task/exportJiraImporter',
-      {}
-    );
+    return this.http.post<any>(this.jiraImporter, {});
   }
 
   update(story: Story): Observable<any> {
-    return this.http.put<Story>(
-      `http://localhost:8080/story/${story.id}`,
-      story
-    );
+    return this.http.put<Story>(`${this.apiURL}/${story.id}`, story);
   }
 
   getStories(): Observable<Story[]> {
-    return this.http.get<Story[]>('http://localhost:8080/story');
+    return this.http.get<Story[]>(this.apiURL);
   }
 
   getStorieById(id: string): Observable<Story> {
-    return this.http.get<any>(`http://localhost:8080/story/${id}`);
+    return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 
   deletar(story: Story): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/story/${story.id}`);
+    return this.http.delete<any>(`${this.apiURL}/${story.id}`);
   }
 }

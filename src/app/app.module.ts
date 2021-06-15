@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { FilesModule } from './files/files.module';
 import { FilesFormComponent } from './files/files-form/files-form.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LayoutComponent, LoginComponent],
@@ -33,7 +34,12 @@ import { AuthService } from './auth.service';
     FilesModule,
     FormsModule,
   ],
-  providers: [StoriesService, TasksService, AuthService],
+  providers: [
+    StoriesService,
+    TasksService,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
