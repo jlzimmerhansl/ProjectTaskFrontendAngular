@@ -18,6 +18,7 @@ import { TaskModule } from './task/task.module';
 import { FilesModule } from './files/files.module';
 import { FilesFormComponent } from './files/files-form/files-form.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LayoutComponent, LoginComponent],
@@ -32,7 +33,7 @@ import { LoginComponent } from './login/login.component';
     FilesModule,
     FormsModule,
   ],
-  providers: [StoriesService, TasksService],
+  providers: [StoriesService, TasksService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
