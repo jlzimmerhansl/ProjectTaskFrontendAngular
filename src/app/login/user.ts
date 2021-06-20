@@ -1,6 +1,7 @@
 export class User {
-  email: string;
-  password: string;
+  id?: string;
+  email?: string;
+  password?: string;
   answer?: string;
   question?: string;
 }

@@ -1,28 +1,37 @@
 <div class="langing-page">
-  <main>
-    <div class="container">
-      <div class="inside-box row justify-content-center">
+  <div class="container">
+    <div class="inside-box row mt-5">
+      <div class="col-md-6">
+        <h1 class="mt-5">Cadastre sua squad e sigla:</h1>
+        <form #teamForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label class="small mb-1">Nome da Squad:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="team.nomeTime"
+                name="nomeTime"
+              />
+            </div>
+            <div class="form-group">
+              <label class="small mb-1">Sigla:</label>
+              <input type="text" class="form-control" name="sigla" />
+            </div>
+            <div
+              class="form-group align-items-center justify-content-between mt-4 mb-0 text-center btn-box"
+            >
+              <button type="submit" class="btn btn-itau">
+                <i class="fas fa-arrow-right"></i>
+                Cadastrar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3">
         <img src="../../../assets/images/planning.svg" alt="Planning Helper" />
       </div>
-      <h1>PlanningHelper</h1>
-      <h6>Digite o nome da sua squad:</h6>
-      <form #teamForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="col-md-4">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="team.nomeTime"
-              name="nomeTime"
-            />
-          </div>
-          <div class="btnBox">
-            <button type="submit" class="btn">
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </form>
     </div>
-  </main>
+  </div>
 </div>

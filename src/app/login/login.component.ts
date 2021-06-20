@@ -9,27 +9,30 @@ import { User } from './user';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  username: string;
+  email: string;
   password: string;
   answer: string;
   question: string;
   cadastrando: boolean;
   successMessage: string;
   errors: String[];
+  user: User;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {
+    this.user = new User();
+  }
 
   onSubmit() {
     const user: User = new User();
 
-    user.email = this.username;
+    user.email = this.email;
     user.password = this.password;
     console.log(user);
     this.authService.handleLogin(user).subscribe(
       (response) => {
-        const access_token = JSON.stringify(response);
-        localStorage.setItem('token', access_token);
-        this.router.navigate(['/squad']);
+        const token = JSON.stringify(response);
+        localStorage.setItem('token', token);
+        this.router.navigate(['/squad/addTeam']);
       },
       (errorResponse) => {
         this.errors = ['Usuário e/ou senha incorretos'];
@@ -49,7 +52,7 @@ export class LoginComponent {
   create() {
     const user: User = new User();
 
-    user.email = this.username;
+    user.email = this.email;
     user.password = this.password;
     user.answer = this.answer;
     user.question = this.question;
@@ -58,7 +61,7 @@ export class LoginComponent {
       (response) => {
         this.successMessage = 'Cadastro efetuado com sucesso! Efetue o login';
         this.cadastrando = false;
-        this.username = '';
+        this.email = '';
         this.password = '';
         this.answer = '';
         this.question = '';
@@ -67,6 +70,28 @@ export class LoginComponent {
       (errorResponse) => {
         this.successMessage = null;
         this.errors = errorResponse.error.errors;
+      }
+    );
+  }
+
+  onSubmitForgot() {
+    const user: User = new User();
+
+    user.answer = this.answer;
+    user.question = this.question;
+
+    this.authService.handleForgotPassword(user).subscribe(
+      (response) => {
+        this.successMessage = response;
+        this.answer = '';
+        this.question = '';
+        this.errors = [];
+        console.log(response.status);
+      },
+      (errorResponse) => {
+        this.successMessage = null;
+        this.errors = errorResponse.error.errors;
+        console.log(errorResponse.error.errors);
       }
     );
   }

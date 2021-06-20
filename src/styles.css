@@ -10623,12 +10623,26 @@ body {
 /*Personalized styles */
 .btn-box .btn-itau {
   background: var(--blue-dark);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   color: var(--white);
+  border: none;
+  cursor: pointer;
 }
 
 .btn-box .btn-itau:hover {
   background: var(--orange);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
+  color: var(--white);
+}
+
+.btn-itau {
+  background: var(--blue-dark);
+  border-radius: 0.3rem;
+  color: var(--white);
+}
+
+.btn-itau:hover {
+  background: var(--orange);
+  border-radius: 0.3rem;
   color: var(--white);
 }

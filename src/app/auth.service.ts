@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,10 +11,16 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   apiURL: string = environment.apiURLBase + '/user';
+  apiURLForgot: string = environment.apiURLBase + '/user/forgot';
   tokenUrl: string = environment.apiURLBase + environment.tokenUrl;
   jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) {}
+  tokenStringHeader = localStorage.getItem('token');
+  reqHeader = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ' + JSON.parse(this.tokenStringHeader).token,
+  });
 
   handleToken() {
     const tokenString = localStorage.getItem('token');
@@ -33,7 +39,7 @@ export class AuthService {
   getAuthenticatedUser() {
     const token = this.handleToken();
     if (token) {
-      const user = this.jwtHelper.decodeToken(token).user_name;
+      const user = this.jwtHelper.decodeToken(token).sub;
       return user;
     }
     return null;
@@ -55,5 +61,22 @@ export class AuthService {
 
   handleLogin(user: User): Observable<any> {
     return this.http.post(this.tokenUrl, user);
+  }
+
+  handleForgotPassword(user: User): Observable<any> {
+    let params = new HttpParams()
+      .set('question', user.question)
+      .set('answer', user.answer);
+    return this.http.get(this.apiURLForgot, {
+      params: params,
+      observe: 'response',
+    });
+  }
+
+  getUserById(id: string): Observable<User> {
+    console.log(this.reqHeader);
+    return this.http.get<any>(`${this.apiURL}/${id}`, {
+      headers: this.reqHeader,
+    });
   }
 }
