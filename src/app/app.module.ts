@@ -20,9 +20,10 @@ import { FilesFormComponent } from './files/files-form/files-form.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { TokenInterceptor } from './token.interceptor';
+import { PasswordComponent } from './password/password.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LayoutComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, LayoutComponent, LoginComponent, PasswordComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

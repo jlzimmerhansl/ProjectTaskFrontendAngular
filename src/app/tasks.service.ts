@@ -19,11 +19,11 @@ export class TasksService {
     Authorization: 'Bearer ' + JSON.parse(this.tokenStringHeader).token,
   });
 
-  saveTeam(team: Team): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}?nomeTime=${team.nomeTime}`, {
-      headers: this.reqHeader,
-    });
-  }
+  //saveTeam(team: Team): Observable<any> {
+  //  return this.http.get<any>(`${this.apiURL}?nomeTime=${team.nomeTime}`, {
+  //    headers: this.reqHeader,
+  //  });
+  //}
 
   save(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiURL, task, { headers: this.reqHeader });

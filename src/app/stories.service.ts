@@ -26,13 +26,13 @@ export class StoriesService {
     });
   }
 
-  gerarPokerPlanning(): Observable<any> {
-    return this.http.post<any>(this.planningPoker, { headers: this.reqHeader });
-  }
-
-  gerarJiraImporter(): Observable<any> {
-    return this.http.post<any>(this.jiraImporter, { headers: this.reqHeader });
-  }
+  //gerarPokerPlanning(): Observable<any> {
+  //  return this.http.post<any>(this.planningPoker, { headers: this.reqHeader });
+  //}
+  //
+  //gerarJiraImporter(): Observable<any> {
+  //  return this.http.post<any>(this.jiraImporter, { headers: this.reqHeader });
+  //}
 
   update(story: Story): Observable<any> {
     return this.http.put<Story>(`${this.apiURL}/${story.id}`, story, {

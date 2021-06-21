@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { StoriesService } from '../../stories.service';
+import { FileService } from '../../file.service';
 
 @Component({
   selector: 'app-files-form',
@@ -11,16 +11,15 @@ export class FilesFormComponent implements OnInit {
   mensagemSucesso: string;
   mensagemErro: string;
 
-  constructor(private service: StoriesService, private router: Router) {}
+  constructor(private service: FileService, private router: Router) {}
 
   ngOnInit(): void {}
 
   gerarPokerPlanning() {
     this.service.gerarPokerPlanning().subscribe(
       (response) => {
-        this.router.navigate([
-          'http://localhost:8080/task?exportPlanningPoker=true',
-        ]);
+        console.log('response');
+        console.log(response.body);
       },
       (erro) => (this.mensagemErro = 'Ocorreu um erro ao gerar arquivo.')
     );

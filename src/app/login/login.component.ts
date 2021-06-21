@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from './user';
-
+import { UserAuth } from './userAuth';
+declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,11 +16,14 @@ export class LoginComponent {
   question: string;
   cadastrando: boolean;
   successMessage: string;
+  errorMessage: string;
   errors: String[];
   user: User;
+  userAuth: UserAuth;
 
   constructor(private router: Router, private authService: AuthService) {
     this.user = new User();
+    this.userAuth = new UserAuth();
   }
 
   onSubmit() {
@@ -86,12 +90,17 @@ export class LoginComponent {
         this.answer = '';
         this.question = '';
         this.errors = [];
-        console.log(response.status);
+        this.userAuth = response.body;
+        $('#modalForgotPassword').modal('hide');
+        this.router.navigate([`/reset-password/${this.userAuth.id}`]);
       },
       (errorResponse) => {
         this.successMessage = null;
         this.errors = errorResponse.error.errors;
-        console.log(errorResponse.error.errors);
+        this.errorMessage =
+          'Pergunta e resposta não correspondem ao cadastrado';
+        setTimeout(() => (this.successMessage = null), 2000);
+        $('#modalForgotPassword').modal('hide');
       }
     );
   }

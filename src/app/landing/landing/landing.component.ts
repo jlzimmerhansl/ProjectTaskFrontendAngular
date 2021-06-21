@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Team } from '../landing';
-import { TasksService } from '../../tasks.service';
+import { FileService } from '../../file.service';
 
 @Component({
   selector: 'app-landing',
@@ -11,7 +11,7 @@ import { TasksService } from '../../tasks.service';
 export class LandingComponent implements OnInit {
   team: Team;
 
-  constructor(private service: TasksService, private router: Router) {
+  constructor(private service: FileService, private router: Router) {
     this.team = new Team();
   }
 

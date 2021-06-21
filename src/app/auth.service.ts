@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from './login/user';
+import { UserPassword } from './login/userPassword';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -11,16 +12,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   apiURL: string = environment.apiURLBase + '/user';
-  apiURLForgot: string = environment.apiURLBase + '/user/forgot';
+  apiURLForgot: string = environment.apiURLBase + '/forgot?';
   tokenUrl: string = environment.apiURLBase + environment.tokenUrl;
   jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) {}
-  tokenStringHeader = localStorage.getItem('token');
-  reqHeader = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + JSON.parse(this.tokenStringHeader).token,
-  });
 
   handleToken() {
     const tokenString = localStorage.getItem('token');
@@ -73,10 +69,7 @@ export class AuthService {
     });
   }
 
-  getUserById(id: string): Observable<User> {
-    console.log(this.reqHeader);
-    return this.http.get<any>(`${this.apiURL}/${id}`, {
-      headers: this.reqHeader,
-    });
+  handleChangePassword(id: string, user: UserPassword): Observable<any> {
+    return this.http.patch(`${this.apiURL}/${id}`, user);
   }
 }

@@ -21,6 +21,9 @@
                   <div class="alert alert-success" *ngIf="successMessage">
                     {{ successMessage }}
                   </div>
+                  <div class="alert alert-danger" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                  </div>
                   <form #loginForm="ngForm" (submit)="onSubmit()">
                     <div class="form-group">
                       <label class="small mb-1">Login</label>

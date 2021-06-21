@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Story } from '../story';
 import { User } from '../../login/user';
+import { UserAuth } from '../../login/userAuth';
 import { StoriesService } from '../../stories.service';
 import { AuthService } from '../../auth.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-stories-form',
@@ -13,21 +15,33 @@ import { AuthService } from '../../auth.service';
 export class StoriesFormComponent implements OnInit {
   story: Story;
   id: string;
-  user: User;
+  user: UserAuth;
   userAuthenticated: string;
+  idUser: string;
 
   constructor(
     private service: StoriesService,
     private authService: AuthService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
     this.story = new Story();
-    this.user = new User();
+    this.user = new UserAuth();
   }
 
   ngOnInit(): void {
     this.userAuthenticated = this.authService.getAuthenticatedUser();
+    // console.log(this.userAuthenticated);
+
+    if (this.userAuthenticated) {
+      this.userService.getUserById(this.userAuthenticated).subscribe(
+        (response) => {
+          this.user = response;
+        },
+        (errorResponse) => (this.user = new UserAuth())
+      );
+    }
 
     let params: Params = this.activatedRoute.params;
 
@@ -38,13 +52,6 @@ export class StoriesFormComponent implements OnInit {
         (errorResponse) => (this.story = new Story())
       );
     }
-
-    this.authService.getUserById(this.userAuthenticated).subscribe(
-      (response) => (this.user = response),
-      (errorResponse) => (this.user = new User())
-    );
-
-    console.log(this.user);
   }
 
   onSubmit() {
