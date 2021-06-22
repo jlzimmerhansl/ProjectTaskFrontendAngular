@@ -62,6 +62,7 @@ export class StoriesDetailComponent implements OnInit {
     this.serviceTask
       .getTaskByHistory(this.story.storyNumber)
       .subscribe((response) => (this.tasks = response));
+    console.log('this.story.storyNumber');
     console.log(this.story.storyNumber);
   }
 
@@ -147,5 +148,92 @@ export class StoriesDetailComponent implements OnInit {
       (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrar task.')
     );
     console.log(this.taskSelected);
+  }
+
+  includeBCP() {
+    this.task = {
+      //id: '',
+      issueType: 'Sub-Task',
+      description: '',
+      summary: 'BCP',
+      hours: 0,
+      issueId: 0,
+      story: this.story,
+      epicLink: '',
+      complexityPoints: '',
+      priority: '',
+      components: '',
+      fixVersions: '',
+      labels: '',
+      dueDate: '',
+      team: '',
+      originalEstimate: 0,
+    };
+    this.serviceTask.save(this.task).subscribe(
+      (response) => {
+        this.mensagemSucesso = 'Task cadastrada com sucesso!';
+        setTimeout(() => (this.mensagemSucesso = null), 2000);
+        this.ngOnInit();
+      },
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrar task.')
+    );
+  }
+
+  includeCodeReview() {
+    this.task = {
+      //id: '',
+      issueType: 'Sub-Task',
+      description: '',
+      summary: 'Code Review',
+      hours: 0,
+      issueId: 0,
+      story: this.story,
+      epicLink: '',
+      complexityPoints: '',
+      priority: '',
+      components: '',
+      fixVersions: '',
+      labels: '',
+      dueDate: '',
+      team: '',
+      originalEstimate: 0,
+    };
+    this.serviceTask.save(this.task).subscribe(
+      (response) => {
+        this.mensagemSucesso = 'Task cadastrada com sucesso!';
+        setTimeout(() => (this.mensagemSucesso = null), 2000);
+        this.ngOnInit();
+      },
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrar task.')
+    );
+  }
+
+  includeDemo() {
+    this.task = {
+      //id: '',
+      issueType: 'Sub-Task',
+      description: '',
+      summary: 'Demo',
+      hours: 0,
+      issueId: 0,
+      story: this.story,
+      epicLink: '',
+      complexityPoints: '',
+      priority: '',
+      components: '',
+      fixVersions: '',
+      labels: '',
+      dueDate: '',
+      team: '',
+      originalEstimate: 0,
+    };
+    this.serviceTask.save(this.task).subscribe(
+      (response) => {
+        this.mensagemSucesso = 'Task cadastrada com sucesso!';
+        setTimeout(() => (this.mensagemSucesso = null), 2000);
+        this.ngOnInit();
+      },
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao cadastrar task.')
+    );
   }
 }

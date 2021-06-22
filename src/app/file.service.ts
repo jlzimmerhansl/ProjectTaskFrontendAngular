@@ -9,10 +9,12 @@ import { Team } from './landing/landing';
 })
 export class FileService {
   apiURL: string = environment.apiURLBase + '/file';
-  jiraImporter: string = environment.apiURLBase + '?exportJiraImporter=true';
-  planningPoker: string = environment.apiURLBase + '?exportPlanningPoker=true';
+  jiraImporter: string =
+    environment.apiURLBase + '/file?exportJiraImporter=true';
+  planningPoker: string =
+    environment.apiURLBase + '/file?exportPlanningPoker=true';
   ParameterizationFile: string =
-    environment.apiURLBase + '?exportParameterizationFile=true';
+    environment.apiURLBase + '/file?exportParameterizationFile=true';
 
   constructor(private http: HttpClient) {}
   tokenStringHeader = localStorage.getItem('token');

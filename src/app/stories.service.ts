@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Story } from './stories/story';
 import { TaskWithId } from './task/taskwithid';
 import { Observable } from 'rxjs';
@@ -40,8 +40,12 @@ export class StoriesService {
     });
   }
 
-  getStories(): Observable<Story[]> {
-    return this.http.get<Story[]>(this.apiURL, { headers: this.reqHeader });
+  getStories(id: string): Observable<Story[]> {
+    let params = new HttpParams().set('id', id);
+    return this.http.get<Story[]>(this.apiURL, {
+      params: params,
+      headers: this.reqHeader,
+    });
   }
 
   getStorieById(id: string): Observable<Story> {

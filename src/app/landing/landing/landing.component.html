@@ -2,7 +2,7 @@
   <div class="container">
     <div class="inside-box row mt-5">
       <div class="col-md-6">
-        <h1 class="mt-5">Cadastre sua squad e sigla:</h1>
+        <h1 class="mt-5">Cadastre sua squad</h1>
         <form #teamForm="ngForm" (ngSubmit)="onSubmit()">
           <div class="col-md-10">
             <div class="form-group">
@@ -13,10 +13,6 @@
                 [(ngModel)]="team.nomeTime"
                 name="nomeTime"
               />
-            </div>
-            <div class="form-group">
-              <label class="small mb-1">Sigla:</label>
-              <input type="text" class="form-control" name="sigla" />
             </div>
             <div
               class="form-group align-items-center justify-content-between mt-4 mb-0 text-center btn-box"

@@ -32,16 +32,13 @@ export class StoriesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.userAuthenticated = this.authService.getAuthenticatedUser();
-    // console.log(this.userAuthenticated);
 
-    if (this.userAuthenticated) {
-      this.userService.getUserById(this.userAuthenticated).subscribe(
-        (response) => {
-          this.user = response;
-        },
-        (errorResponse) => (this.user = new UserAuth())
-      );
-    }
+    this.userService.getUserById(this.userAuthenticated).subscribe(
+      (response) => {
+        this.user = response;
+      },
+      (errorResponse) => (this.user = new UserAuth())
+    );
 
     let params: Params = this.activatedRoute.params;
 

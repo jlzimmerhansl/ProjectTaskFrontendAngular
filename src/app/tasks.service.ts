@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Team } from './landing/landing';
 import { Task } from './task/task';
 import { TaskWithId } from './task/taskwithid';
@@ -29,17 +29,20 @@ export class TasksService {
     return this.http.post<Task>(this.apiURL, task, { headers: this.reqHeader });
   }
 
-  getTasks(): Observable<TaskWithId[]> {
+  getTasks(id: string): Observable<TaskWithId[]> {
+    let params = new HttpParams().set('id', id);
     return this.http.get<TaskWithId[]>(this.apiURL, {
+      params: params,
       headers: this.reqHeader,
     });
   }
 
   getTaskByHistory(storyNumber: string): Observable<TaskWithId[]> {
-    return this.http.get<TaskWithId[]>(
-      `${this.apiURL}?jiraKey=${storyNumber}`,
-      { headers: this.reqHeader }
-    );
+    let params = new HttpParams().set('jiraKey', storyNumber);
+    return this.http.get<TaskWithId[]>(this.apiURL, {
+      params: params,
+      headers: this.reqHeader,
+    });
   }
 
   deletar(task: Task): Observable<any> {

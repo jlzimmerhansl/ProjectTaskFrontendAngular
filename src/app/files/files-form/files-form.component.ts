@@ -28,9 +28,18 @@ export class FilesFormComponent implements OnInit {
   gerarJiraImporter() {
     this.service.gerarJiraImporter().subscribe(
       (response) => {
-        this.router.navigate([
-          'http://localhost:8080/task?exportJiraImporter=true',
-        ]);
+        console.log('response');
+        console.log(response.body);
+      },
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao gerar arquivo.')
+    );
+  }
+
+  gerarParameterizationFile() {
+    this.service.gerarParameterizationFile().subscribe(
+      (response) => {
+        console.log('response');
+        console.log(response.body);
       },
       (erro) => (this.mensagemErro = 'Ocorreu um erro ao gerar arquivo.')
     );

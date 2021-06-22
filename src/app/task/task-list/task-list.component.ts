@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TasksService } from '../../tasks.service';
 import { Task } from '../task';
 import { TaskWithId } from '../taskwithid';
+import { AuthService } from '../../auth.service';
 
 declare var $: any;
 @Component({
@@ -16,13 +17,21 @@ export class TaskListComponent implements OnInit {
   mensagemSucesso: string;
   mensagemErro: string;
   task: TaskWithId;
+  userAuthenticated: string;
 
-  constructor(private service: TasksService, private router: Router) {
+  constructor(
+    private service: TasksService,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.task = new TaskWithId();
   }
 
   ngOnInit(): void {
-    this.service.getTasks().subscribe((response) => (this.tasks = response));
+    this.userAuthenticated = this.authService.getAuthenticatedUser();
+    this.service
+      .getTasks(this.userAuthenticated)
+      .subscribe((response) => (this.tasks = response));
   }
 
   preparaDelecao(task: Task) {
