@@ -1,27 +1,66 @@
-# ClientesApp
+<h1 align="center" color:"#003767">
+            PlanningHelper
+</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+<p align="center">
 
-## Development server
+<a href="https://www.linkedin.com/in/jessica-zimmerhansl">
+    <img alt="Linkedin" src="https://img.shields.io/badge/JessicaZimmerhansl-003767?style=flat-square&logo=LinkedIn&labelColor=#003767">
+  </a>   
+     <a href="https://github.com/jlzimmerhansl/ProjectTaskFrontendAngular">
+    <img alt="Repo-Size" src="https://img.shields.io/github/repo-size/jlzimmerhansl/ProjectTaskFrontendAngular?color=%23003767&logoColor=%23003767&style=flat-square">
+  </a>    
+                                                                                                         
+  <a href="https://github.com/jlzimmerhansl/ProjectTaskFrontendAngular/commits/master">
+    <img alt="Last-Commit" src="https://img.shields.io/github/last-commit/jlzimmerhansl/ProjectTaskFrontendAngular?color=%23003767&logoColor=%23003767&style=flat-square">
+  </a>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+</p>
 
-## Code scaffolding
+## :bookmark: About the Project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project was develop to facilitate the breaking of tasks at the time of Sprint planning, where stories are broken and hours are estimated.
 
-## Build
+## :hammer_and_pick: Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This project was developed using the following technologies:
 
-## Running unit tests
+- [Node][url-node]
+- [Angular][url-angular]
+- [TypeScript][url-typescript]
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## :mechanic: What do you need to use?
 
-## Running end-to-end tests
+- [Git][url-git]
+- [NodeJS][url-node]
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## :package: How to clone?
 
-## Further help
+```bash
+# clone the repository
+$ git clone https://github.com/jlzimmerhansl/ProjectTaskFrontendAngular.git
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## :rocket: How to run?
+
+> :bulb: The project runs on the following url: http://localhost:4200
+
+```bash
+# install the dependencies
+$ npm
+
+# run the project
+$ cd ProjectTaskFrontendAngular
+$ ng serve
+```
+
+---
+
+<h4 align="center">
+Made with :blue_heart: &nbsp; by <a href="https://www.linkedin.com/in/jessica-zimmerhansl" target="_blank">Jessica Zimmerhansl</a>
+</h4>
+
+[url-typescript]: https://www.typescriptlang.org
+[url-node]: https://nodejs.org/pt-br/
+[url-angular]: https://angular.io/
+[url-git]: https://git-scm.com
